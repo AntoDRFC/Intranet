@@ -12,7 +12,7 @@
 	        	<ul class="form">
 	        		<li>
 	        			<label>Type</label>
-	        			<input type="text" name="type" value="" placeholder="Enter type..." />
+	        			<input type="text" name="type" value="" />
 	        		</li>
 	        		<li class="submit-area">
 	        			<input type="submit" value="Create" class="orange-btn" />
