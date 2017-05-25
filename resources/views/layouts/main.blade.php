@@ -9,12 +9,12 @@
         <header>
             <div class="auth-bar">
                 <div class="container">
-                    <div class="logo"></div>
+                    <div class="logo"><img src="/images/logo.png" alt="Vivid" /></div>
                     @if (Auth::check())
                         <nav class="auth-nav">
                             <ul>
                                 <li>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    Welcome {{ Auth::user()->name }}, <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
@@ -24,17 +24,19 @@
                     @endif
                 </div>
             </div>
-            @if (Auth::check())
-                <nav class="main-nav">
-                    <div class="container">
-                        <ul>
+            <nav class="main-nav">
+                <div class="container">
+                    <ul>
+                        @if (Auth::check())
                             <li><a href="/">Dashboard</a></li>
                             <li><a href="/types/">Types</a></li>
                             <li><a href="/clients/">Client List</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            @endif
+                        @else
+                            <li><a href="/login/">Login</a></li>
+                        @endif
+                    </ul>
+                </div>
+            </nav>
         </header>
         
         @yield('content')    
