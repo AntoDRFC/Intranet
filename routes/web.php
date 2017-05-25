@@ -11,22 +11,30 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'auth'], function()
+{
+	Route::get('/', function () {
+	    return view('welcome');
+	});
+
+	Route::resource('types', 'TypeController', ['except' => [
+	    'show'
+	]]);
+
+	Route::resource('clients', 'ClientController', ['except' => [
+	    'show'
+	]]);
+
+	Route::resource('client-details', 'ClientDetailController', ['only' => [
+	    'store', 'edit', 'update', 'destroy'
+	]]);
+
+	Route::get('client-details/create/{id?}', 'ClientDetailController@Create')->name('client-details.create');
+
+	Route::get('/client/details/{id}', 'ClientController@Details');
 });
 
-Route::resource('types', 'TypeController', ['except' => [
-    'show'
-]]);
 
-Route::resource('clients', 'ClientController', ['except' => [
-    'show'
-]]);
+Auth::routes();
 
-Route::resource('client-details', 'ClientDetailController', ['only' => [
-    'store', 'edit', 'update', 'destroy'
-]]);
-
-Route::get('client-details/create/{id?}', 'ClientDetailController@Create')->name('client-details.create');
-
-Route::get('/client/details/{id}', 'ClientController@Details');
+Route::get('/home', 'HomeController@index')->name('home');
