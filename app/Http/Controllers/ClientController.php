@@ -11,15 +11,28 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // get all the clients
-        $clients = Client::orderBy('client_name')->get();
+        // set searched client to empty by default
+        $client = '';
+
+        if(empty($request->client)) {
+            // get all the clients
+            $clients = Client::orderBy('client_name')->get();
+        } else {
+            // search for clients
+            $clients = Client::where('client_name', 'LIKE', '%' .$request->client . '%')->orderBy('client_name')->get();
+            $client = $request->client;
+        }
 
         // load the view and pass the clients
-        return view('clients.index')->with('clients', $clients);
+        return view('clients.index', [
+            'clients' => $clients,
+            'client' => $client
+        ]);
     }
 
     /**

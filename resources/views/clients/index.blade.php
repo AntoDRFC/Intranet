@@ -6,6 +6,17 @@
 
         <div class="white-panel">
 			@include('shared.success')
+
+ 			<div class="client-search">
+ 				<p>Search for a client:</p>
+ 				<form method="get">
+ 					<input type="text" name="client" />
+ 					<input type="submit" value="Search" />
+ 				</form>
+ 				@if($client)
+	 				<p><a class="orange-btn" href="{{ route('clients.index') }}">Remove filter</a></p>
+ 				@endif
+	 		</div>
 			
         	<p><a class="orange-btn" href="{{ route('clients.create') }}">Add new client</a></p>
 	        <table cellspacing="2">
