@@ -5,11 +5,8 @@
         <h1>Clients</h1>
 
         <div class="white-panel">
-			@if(session()->has('status'))
-			    <div class="alert"> 
-				    {!! session('status') !!}
-			    </div>
-			@endif
+			@include('shared.success')
+			
         	<p><a class="orange-btn" href="{{ route('clients.create') }}">Add new client</a></p>
 	        <table cellspacing="2">
 	        	<thead>

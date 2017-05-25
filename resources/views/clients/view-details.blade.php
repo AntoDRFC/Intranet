@@ -5,11 +5,8 @@
         <h1>Client Details for {{$client->client_name}}</h1>
 
         <div class="white-panel">
-			@if(session()->has('status'))
-			    <div class="alert"> 
-				    {!! session('status') !!}
-			    </div>
-			@endif
+			@include('shared.success')
+
         	<p><a class="orange-btn" href="{{ route('client-details.create', ['id' => $client->id]) }}">Add new client details</a></p>
 	        <table cellspacing="2">
 	        	<thead>

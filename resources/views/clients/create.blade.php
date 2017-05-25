@@ -5,13 +5,7 @@
         <h1>Create Client</h1>
 
         <div class="white-panel">
-			@if($errors->any())
-			    <div class="alert alert-danger">
-			        @foreach($errors->all() as $error)
-			            <p>{{ $error }}</p>
-			        @endforeach
-			    </div>
-			@endif
+			@include('shared.errors')
 			
 	        <form method="post" action="{{ route('clients.store') }}">
 	        	{!! csrf_field() !!}

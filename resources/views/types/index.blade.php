@@ -5,11 +5,8 @@
         <h1>Types</h1>
 
         <div class="types-content white-panel">
-			@if(session()->has('status'))
-			    <div class="alert"> 
-				    {!! session('status') !!}
-			    </div>
-			@endif
+			@include('shared.success')
+			
         	<p><a class="orange-btn" href="{{ route('types.create') }}">Add new type</a></p>
 	        <table cellspacing="2">
 	        	<thead>
