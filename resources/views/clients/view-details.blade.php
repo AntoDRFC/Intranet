@@ -7,6 +7,17 @@
         <div class="white-panel">
 			@include('shared.success')
 
+ 			<div class="detail-search">
+ 				<p>Search for a record:</p>
+ 				<form method="get">
+ 					<input type="text" name="description" value="{{ ($searchTerm) ? $searchTerm : '' }}" />
+ 					<input type="submit" value="Search" />
+ 				</form>
+ 				@if($searchTerm)
+	 				<p><a class="orange-btn" href="/client/details/{{$client->id}}">Remove filter</a></p>
+ 				@endif
+	 		</div>
+
         	<p><a class="orange-btn" href="{{ route('client-details.create', ['id' => $client->id]) }}">Add new client details</a></p>
 	        <table cellspacing="2">
 	        	<thead>

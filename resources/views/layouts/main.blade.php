@@ -9,7 +9,7 @@
         <header>
             <div class="auth-bar">
                 <div class="container">
-                    <div class="logo"><img src="/images/logo.png" alt="Vivid" /></div>
+                    <div class="logo"><a href="/"><img src="/images/logo.png" alt="Vivid" /></a></div>
                     @if (Auth::check())
                         <nav class="auth-nav">
                             <ul>

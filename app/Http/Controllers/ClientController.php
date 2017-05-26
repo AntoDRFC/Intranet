@@ -120,14 +120,26 @@ class ClientController extends Controller
      *
      * @param  int  $id
      */
-    public function details($id)
+    public function details(Request $request, $id)
     {
+        $searchTerm = '';
+
+        if(empty($request->description)) {
+            // get all the clients
+            $details = ClientDetail::where('client_id', $id)->get();
+        } else {
+            // search for clients
+            $details = ClientDetail::where('client_id', $id)->where('description', 'LIKE', '%' .$request->description . '%')->get();
+            $searchTerm = $request->description;
+        }
+
         $client  = Client::findOrFail($id);
-        $details = ClientDetail::where('client_id', $id)->get();
+        //$details = ClientDetail::where('client_id', $id)->get();
 
         $viewData = [
             'client'  => $client,
-            'details' => $details
+            'details' => $details,
+            'searchTerm' => $searchTerm
         ];
 
         return view('clients.view-details', $viewData);
